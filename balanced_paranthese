@@ -1,0 +1,38 @@
+import java.util.Stack;
+
+public class Solution {
+    public static boolean isBalanced(String S) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char bracket : S.toCharArray()) {
+            if (bracket == '(' || bracket == '{' || bracket == '[') {
+                // Push opening brackets onto the stack
+                stack.push(bracket);
+            } else if (bracket == ')' && !stack.isEmpty() && stack.peek() == '(') {
+                // Pop the matching opening bracket
+                stack.pop();
+            } else if (bracket == '}' && !stack.isEmpty() && stack.peek() == '{') {
+                // Pop the matching opening bracket
+                stack.pop();
+            } else if (bracket == ']' && !stack.isEmpty() && stack.peek() == '[') {
+                // Pop the matching opening bracket
+                stack.pop();
+            } else {
+                // Mismatched closing bracket or no matching opening bracket
+                return false;
+            }
+        }
+
+        // If the stack is empty, all brackets were properly closed
+        return stack.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        // Example usage:
+        String input1 = "[{}()]";
+        System.out.println(isBalanced(input1));  // Output: true
+
+        String input2 = "[(])";
+        System.out.println(isBalanced(input2));  // Output: false
+    }
+}
