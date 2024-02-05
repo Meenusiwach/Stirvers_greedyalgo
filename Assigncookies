@@ -1,0 +1,38 @@
+//using java 
+import java.util.Arrays;
+
+public class Solution {
+    public static int assignCookie(int[] greed, int[] size) {
+        Arrays.sort(greed);
+        Arrays.sort(size);
+
+        int i = 0; // Pointer for greed array
+        int j = 0; // Pointer for size array
+        int satisfiedChildren = 0;
+
+        while (i < greed.length && j < size.length) {
+            if (size[j] >= greed[i]) {
+                satisfiedChildren++;
+                i++;
+            }
+            j++;
+        }
+
+        return satisfiedChildren;
+    }
+
+    public static void main(String[] args) {
+        // Example usage:
+        int[] greed1 = {3, 5, 6, 4};
+        int[] size1 = {1, 4, 5};
+        System.out.println(assignCookie(greed1, size1)); // Output: 2
+
+        int[] greed2 = {1, 2, 3};
+        int[] size2 = {1, 2, 3, 4};
+        System.out.println(assignCookie(greed2, size2)); // Output: 3
+
+        int[] greed3 = {4, 5, 6, 7, 8};
+        int[] size3 = {2, 3, 4, 5, 6};
+        System.out.println(assignCookie(greed3, size3)); // Output: 3
+    }
+}
