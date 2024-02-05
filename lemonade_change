@@ -1,0 +1,38 @@
+public class Solution {
+    public static boolean lemonadeChange(int[] bill) {
+        int fiveCount = 0;
+        int tenCount = 0;
+
+        for (int payment : bill) {
+            if (payment == 5) {
+                fiveCount++;
+            } else if (payment == 10) {
+                if (fiveCount == 0) {
+                    return false;
+                }
+                fiveCount--;
+                tenCount++;
+            } else { // payment == 20
+                if (tenCount > 0 && fiveCount > 0) {
+                    tenCount--;
+                    fiveCount--;
+                } else if (fiveCount >= 3) {
+                    fiveCount -= 3;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        // Example usage:
+        int[] bill1 = {5, 5, 5, 10, 10, 20};
+        System.out.println(lemonadeChange(bill1));  // Output: true
+
+        int[] bill2 = {5, 10, 5, 10, 5, 20, 20};
+        System.out.println(lemonadeChange(bill2));  // Output: false
+    }
+}
