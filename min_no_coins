@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+    public static List<Integer> MinimumCoins(int n) {
+        List<Integer> result = new ArrayList<>();
+        int[] coins = {1000, 500, 100, 50, 20, 10, 5, 2, 1};
+
+        for (int coin : coins) {
+            while (n >= coin) {
+                result.add(coin);
+                n -= coin;
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        // Example usage:
+        int amount1 = 13;
+        List<Integer> result1 = MinimumCoins(amount1);
+        System.out.println(result1);  // Output: [10, 2, 1]
+
+        int amount2 = 50;
+        List<Integer> result2 = MinimumCoins(amount2);
+        System.out.println(result2);  // Output: [50]
+    }
+}
